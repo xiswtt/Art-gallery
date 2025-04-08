@@ -86,7 +86,7 @@ body {
     font-size: 1rem;
     color: var(--color-dark);
     background-color: var(--color-background);
-
+    overflow-x: hidden;
     
 }
 
@@ -359,6 +359,23 @@ main, .right {
     grid-row-start: 3;
 }
 
+.art:nth-child(8) {
+    grid-column: 1/4;
+    grid-row-start: 4;
+}
+
+.art:nth-child(9) {
+    grid-column: 1/3;
+    grid-row-start: 5;
+}
+
+.art:nth-child(10) {
+    grid-column: 3/4;
+    grid-row-start: 5;
+    
+}
+
+
 .grid-fix {
     grid-row-start: 2 !important;
 }
@@ -473,9 +490,56 @@ main, .right {
     font-weight: 600;
 }
 
-.message b {
-    color: var(--color-primary);
+.about-me {
+    display: none;
+    margin: 2rem;
 }
+
+
+.about-me p {
+    margin-bottom: 2rem;
+}
+
+.video {
+    border-radius: 20px;
+    height: 70%;
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
 
 /* АДАПТАЦИЯ (СПАСАЙТЕ) */
 @media (min-width: 1200px) and (max-width: 1440px) {
@@ -493,6 +557,10 @@ main, .right {
 }
 
 @media (min-width:1024px) and (max-width: 1199px) {
+    .video {
+        width: 90%;
+    }
+
     .container {
         width: 94%;
         grid-template-columns: 7rem auto 17rem;
@@ -524,6 +592,10 @@ main, .right {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+    .video {
+        width: 100%;
+    }
+
     .container {
         width: 94%;
         grid-template-columns: 15% 55% 25%;
@@ -580,9 +652,13 @@ main, .right {
 }
 
 @media (max-width: 767px) {
+    .video {
+        width: 100%;
+
+    }
 
     .container {
-        max-width: 94%;
+        width: 100%;
         grid-template-columns: 1fr;
     }
 
@@ -594,7 +670,7 @@ main, .right {
         background-color: var(--color-white);
         z-index: 3;
         box-shadow: 1rem 3rem 4rem var(--color-light);
-        height: 100vh;
+        height: 101vh;
         padding-right: var(--card-padding);
     }
 
@@ -620,8 +696,8 @@ main, .right {
     }
 
     .menu__link {
-    width: 100%;
-    height: 3.4rem;
+        width: 100%;
+        height: 3.4rem;
     }
 
     .menu__link:first-child,
@@ -637,8 +713,11 @@ main, .right {
     }
 
     .animate {
-        animation-duration: 0.5s;
-        animation-name: slidein;
+        animation: slidein 0.5s linear forwards;
+    }
+
+    .animate-reverse {
+        animation: slideout 0.5s linear forwards;
     }
       
     @keyframes slidein {
@@ -650,6 +729,19 @@ main, .right {
         to {
             opacity: 1;
           margin-left: 0%;
+        }
+    }
+
+    @keyframes slideout {
+        from {
+            opacity: 1;
+          margin-left: 0%;
+            
+        }
+      
+        to {
+           opacity: 0;
+          margin-left: -10%; 
         }
     }
 

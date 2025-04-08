@@ -2,16 +2,77 @@
 const sideMenu = document.querySelector('.left');
 const menuBtn = document.querySelector('#menu-btn');
 const closeBtn = document.querySelector('.close');
+const aboutButton = document.querySelector('#about-me');
+const aboutSection = document.querySelector('#about-me-section');
+const gallery = document.querySelector('#gallery-img');
 
 menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = "block";
-    sideMenu.classList.toggle('animate');
-})
+    sideMenu.style.display = "block"; // показываем
+    sideMenu.classList.remove("animate-reverse"); // убираем обратную анимацию, если была
+    void sideMenu.offsetWidth; // форс перерисовки, чтобы анимация снова сработала
+    sideMenu.classList.add('animate'); // запускаем анимацию появления
+});
 
+// Закрытие меню
 closeBtn.addEventListener("click", () => {
-      sideMenu.classList.add("fade-out");
+    sideMenu.classList.remove("animate");
+    void sideMenu.offsetWidth;
+    sideMenu.classList.add("animate-reverse");
+});
+
+// После окончания анимации скрываем элемент
+sideMenu.addEventListener("animationend", (e) => {
+    if (e.animationName === "slideout") {
+        sideMenu.style.display = "none";
+        sideMenu.classList.remove("animate-reverse");
     }
-  );
+});
+
+// секция обо мне
+let isAboutVisible = false;
+
+aboutButton.addEventListener('click', () => {
+    if (!isAboutVisible) {
+        // Скрыть галерею
+        gallery.classList.remove('fade-in', 'fade-out');
+        gallery.classList.add('fade-out');
+
+        gallery.addEventListener('animationend', function handler() {
+            gallery.style.display = 'none';
+            gallery.classList.remove('fade-out');
+            gallery.removeEventListener('animationend', handler);
+
+            // Показать about me
+            aboutSection.style.display = 'block';
+            aboutSection.classList.remove('fade-in', 'fade-out');
+            void aboutSection.offsetWidth;
+            aboutSection.classList.add('fade-in');
+
+            isAboutVisible = true;
+        });
+    } else {
+        // Скрыть about me
+        aboutSection.classList.remove('fade-in', 'fade-out');
+        aboutSection.classList.add('fade-out');
+
+        aboutSection.addEventListener('animationend', function handler() {
+            aboutSection.style.display = 'none';
+            aboutSection.classList.remove('fade-out');
+            aboutSection.removeEventListener('animationend', handler);
+
+            // Показать галерею
+            gallery.style.display = 'block';
+            gallery.classList.remove('fade-in', 'fade-out');
+            void gallery.offsetWidth;
+            gallery.classList.add('fade-in');
+
+            isAboutVisible = false;
+        });
+    }
+});
+
+
+
 
 
 
@@ -34,6 +95,10 @@ malina.addEventListener('click', () => {
     document.querySelector('#loverspic1').classList.toggle('none-display');
     document.querySelector('#vanillapic').classList.toggle('none-display');
     document.querySelector('#nonepic').classList.toggle('none-display');
+
+    document.querySelector('#mac1').classList.toggle('none-display');
+    document.querySelector('#tibu').classList.toggle('none-display');
+    document.querySelector('#malibu').classList.toggle('none-display');
 })
 
 const eona = document.querySelector('#eona');
@@ -46,11 +111,17 @@ eona.addEventListener('click', () => {
     document.querySelector('#loverspic1').classList.toggle('none-display');
     document.querySelector('#vanillapic').classList.toggle('none-display');
     document.querySelector('#nonepic').classList.toggle('none-display');
+
+    document.querySelector('#mac1').classList.toggle('none-display');
+    document.querySelector('#tibu').classList.toggle('none-display');
+    document.querySelector('#malibu').classList.toggle('none-display');
 })
 
 const together = document.querySelector('#together');
 
 together.addEventListener('click', () => {
+    document.querySelector('#mac1').classList.toggle('none-display');
+    document.querySelector('#tibu').classList.toggle('none-display');
     document.querySelector('#malinapic').classList.toggle('none-display');
     document.querySelector('#malinapic1').classList.toggle('none-display');
     document.querySelector('#maquvierpic').classList.toggle('none-display');
