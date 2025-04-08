@@ -482,8 +482,17 @@ main, .right {
     margin-bottom: 1rem;
 }
 
-.message {
+.message{
     line-height: 1.5;
+}
+
+.review-item {
+    line-height: 1.7;
+    color: var(--color-dark);
+}
+
+.review-h2 {
+    margin: 1rem 0.6rem;
 }
 
 .message span {
@@ -508,11 +517,6 @@ main, .right {
     margin: 0 auto;
     position: relative;
 }
-
-.rewiews {
-    margin-top: 1rem;
-}
-
 
 .fade-in {
     animation: fadeIn 0.4s ease forwards;

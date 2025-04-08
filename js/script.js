@@ -165,6 +165,10 @@ function loadReviews() {
     reviews.forEach(review => {
         const newReview = document.createElement('p');
         newReview.textContent = review;
+
+        // Добавляем класс для стилизации
+        newReview.classList.add('review-item');
+
         reviewList.appendChild(newReview);
     });
 }
@@ -188,6 +192,10 @@ submitBtn.addEventListener('click', () => {
 
         const newReview = document.createElement('p');
         newReview.textContent = reviewText;
+
+        // Добавляем класс для стилизации
+        newReview.classList.add('review-item');
+
         reviewList.appendChild(newReview);
 
         input.value = "";
