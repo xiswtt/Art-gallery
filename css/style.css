@@ -670,7 +670,7 @@ main, .right {
         background-color: var(--color-white);
         z-index: 3;
         box-shadow: 1rem 3rem 4rem var(--color-light);
-        height: 101vh;
+        height: 150vh;
         padding-right: var(--card-padding);
     }
 
