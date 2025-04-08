@@ -149,3 +149,58 @@ favourite.addEventListener('click', () => {
     document.querySelector('#maquvierpic').classList.toggle('none-display');
     document.querySelector('#nonepic').classList.toggle('none-display');
 })
+
+
+
+// ОТЗЫВЫ
+const input = document.getElementById('review-input');
+const submitBtn = document.getElementById('submit-review');
+const reviewList = document.getElementById('review-list');
+const clearBtn = document.getElementById('clear-reviews-btn'); // Кнопка для очистки отзывов
+
+// Функция для загрузки отзывов из localStorage
+function loadReviews() {
+    const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+    reviews.forEach(review => {
+        const newReview = document.createElement('p');
+        newReview.textContent = review;
+        reviewList.appendChild(newReview);
+    });
+}
+
+// Функция для сохранения нового отзыва в localStorage
+function saveReview(newReviewText) {
+    const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    reviews.push(newReviewText);
+    localStorage.setItem('reviews', JSON.stringify(reviews));
+}
+
+// Загружаем отзывы при загрузке страницы
+loadReviews();
+
+// Обработчик для кнопки "Отправить"
+submitBtn.addEventListener('click', () => {
+    const reviewText = input.value.trim();
+
+    if (reviewText !== "") {
+        saveReview(reviewText);
+
+        const newReview = document.createElement('p');
+        newReview.textContent = reviewText;
+        reviewList.appendChild(newReview);
+
+        input.value = "";
+    } else {
+        alert("Напиши что-нибудь 🥺");
+    }
+});
+
+// Обработчик для кнопки очистки отзывов
+clearBtn.addEventListener('click', () => {
+    // Очистить все элементы на странице (отзывы)
+    reviewList.innerHTML = '';
+
+    // Очистить все отзывы из localStorage
+    localStorage.removeItem('reviews');
+});
